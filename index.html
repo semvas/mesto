@@ -6,27 +6,70 @@
   <meta name="description" content="Красивые места">
   <title>Красивые места</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <!-- <style>* {border: 1px solid red;}</style> -->
 </head>
-<body>
+<body class="body">
   <div class="page">
     <header class="header">
-      <img  class="header__logo" src=./images/header-logo.svg alt="Логотип">
+      <img  class="header__logo" src=./images/logo.svg alt="Логотип">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" src="" alt="">
+        <img class="profile__image" src="./images/avatar.jpg" alt="Аватарка">
+        <div class="profile__info">
+          <div class="profile__title">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="btn profile__edit-btn"></button>
+          </div>
+          <p class="profile__desc">Исследователь океана</p>
+        </div>
+        <button class="btn profile__add-btn"></button>
       </section>
-      <section class="elements">
-      <ul class="elements__list">
-        <li class="elements__element"></li>
-        <li class="elements__element"></li>
-        <li class="elements__element"></li>
-        <li class="elements__element"></li>
-        <li class="elements__element"></li>
-        <li class="elements__element"></li>
+      <ul class="elements">
+        <li class="element">
+          <img class="element__image" src=./images/karachaevo.jpg alt="Карачаевск">
+          <div class="element__info">
+              <h3 class="element__title">Карачаевск</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src=./images/elbrus.jpg alt="Гора Эльбрус">
+          <div class="element__info">
+              <h3 class="element__title">Гора Эльбрус</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src=./images/dombai.jpg alt="Домбай">
+          <div class="element__info">
+              <h3 class="element__title">Домбай</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src=./images/elbrus.jpg alt="Гора Эльбрус">
+          <div class="element__info">
+              <h3 class="element__title">Гора Эльбрус</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src=./images/dombai.jpg alt="Домбай">
+          <div class="element__info">
+              <h3 class="element__title">Домбай</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img class="element__image" src=./images/karachaevo.jpg alt="Карачаевск">
+          <div class="element__info">
+              <h3 class="element__title">Карачаево-Черкесия</h3>
+              <button type="button" class="btn element__like-btn"></button>
+          </div>
+        </li>
       </ul>
-      </section>
     </main>
 
     <footer class="footer">
