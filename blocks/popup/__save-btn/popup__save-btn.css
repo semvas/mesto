@@ -18,10 +18,9 @@
 
 @media screen and (max-width: 425px) {
   .popup__save-btn {
-    margin-top: 28px;
+    margin-top: 27px;
     min-height: 46px;
     font-size: 14px;
     line-height: 1.22;
-    margin-top: 27px;
   }
 }
