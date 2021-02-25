@@ -6,7 +6,6 @@
   <meta name="description" content="Красивые места">
   <title>Красивые места</title>
   <link rel="stylesheet" href="./pages/index.css">
-  <!-- <style>* {border: 1px solid red;}</style> -->
 </head>
 <body class="body">
   <div class="page">
@@ -76,5 +75,17 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
   </div>
+<div class="popup">
+  <div class="popup__container">
+    <form name="profileEdit" class="popup__form">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" name="profileName" class="popup__form-item">
+      <input type="text" name="profileDesc" class="popup__form-item">
+      <button type="submit" class="popup__save-btn">Сохранить</button>
+    </form>
+  <button type="button" class="btn popup__close-btn"></button>
+  </div>
+</div>
+<script src="./scripts/script.js"></script>
 </body>
 </html>
