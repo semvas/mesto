@@ -1,11 +1,11 @@
 .profile__title {
   display: flex;
-  justify-content: center;
   align-items: baseline;
 } 
 
 @media screen and (max-width: 920px) {
   .profile__title {
     margin-top: 26px;
+    justify-content: center;
   }
 }
