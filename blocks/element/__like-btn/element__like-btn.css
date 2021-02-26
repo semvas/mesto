@@ -8,3 +8,8 @@
   background-size: contain;
   background-color: transparent;
 }
+
+.element__like-btn:hover {
+  opacity: .5;
+  cursor: pointer;
+}
