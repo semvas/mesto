@@ -1,0 +1,13 @@
+.element__del-btn {
+  background-image: url(../../../images/TrashBtn.svg);
+  width: 18px;
+  height: 19px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-size: contain;
+  background-color: transparent;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
