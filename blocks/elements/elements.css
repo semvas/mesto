@@ -11,5 +11,6 @@
 @media screen and (max-width: 620px) {
   .elements {
     grid-template-columns: 1fr;
+    margin: auto;
   }
 }
