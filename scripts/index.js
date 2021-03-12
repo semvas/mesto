@@ -1,6 +1,6 @@
 const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
-const closeBtn = document.querySelectorAll('.popup__close-btn');
+const closeButtons = document.querySelectorAll('.popup__close-btn');
 
 const editProfilePopup = document.querySelector('.popup-profile');
 const addCardPopup = document.querySelector('.popup-add');
@@ -9,13 +9,13 @@ const showImgPopup = document.querySelector('.popup-img');
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__desc');
 
-const editForm = document.forms['profile-edit'];
-const editName = editForm.elements['profile-name'];
-const editDesc = editForm.elements['profile-desc'];
+const editForm = document.querySelector('form[name="profile-edit"]');
+const editName = editForm.querySelector('input[name="profile-name"]');
+const editDesc = editForm.querySelector('input[name="profile-desc"]');
 
-const addForm = document.forms['add-card'];
-const placeName = addForm.elements['place-name'];
-const placeUrl = addForm.elements['place-url'];
+const addForm = document.querySelector('form[name="add-card"]');
+const placeName = addForm.querySelector('input[name="place-name"]');
+const placeUrl = addForm.querySelector('input[name="place-url"]');
 
 const imagePopup = document.querySelector('.popup__image');
 const imageCaption = document.querySelector('.popup__caption');
@@ -31,19 +31,20 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
 
-function closePopupBtn (evt) {
+function  handleCloseButtons (evt) {
   const targetPopup = evt.target.closest('.popup');
 
   closePopup(targetPopup);
 }
 
 function openEditForm () {
-  openPopup(editProfilePopup);
-
   editName.value = profileName.textContent;
   editDesc.value =  profileDesc.textContent;
+
+  openPopup(editProfilePopup);
 }
 
+// Функция редактирования данных профиля
 function saveProfileEdit (evt) {
   evt.preventDefault();
 
@@ -53,22 +54,24 @@ function saveProfileEdit (evt) {
   closePopup (editProfilePopup);
 }
 
-function actLike (evt) {
+function handleLikeClick (evt) {
   evt.target.classList.toggle('element__like-btn_act');
 }
 
-function delCard (evt) {
+function handleDeleteCard (evt) {
   evt.target.closest('.element').remove();
 }
 
-function openImgPopup (item) {
-  openPopup(showImgPopup);
-
+// Функция открытия изображения из карточки
+function handleImgPopup (item) {
   imagePopup.src = item.link;
   imagePopup.alt = item.name;
   imageCaption.textContent = item.name;
+
+  openPopup(showImgPopup);
 }
 
+// Функция создания карточки
 function createElement (item) {
   const cardElement = cardTemplate.content.cloneNode(true);
   const cardImage = cardElement.querySelector('.element__image');
@@ -78,17 +81,18 @@ function createElement (item) {
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
 
-  cardElement.querySelector('.element__like-btn').addEventListener('click', actLike);
+  cardElement.querySelector('.element__like-btn').addEventListener('click', handleLikeClick);
 
-  cardElement.querySelector('.element__del-btn').addEventListener('click', delCard);
+  cardElement.querySelector('.element__del-btn').addEventListener('click', handleDeleteCard);
 
   cardImage.addEventListener('click', () => {
-    openImgPopup(item);
+    handleImgPopup(item);
   });
   
   return cardElement;  
 }
 
+// Функция добавления новой карточки
 function insertCard (evt) {
   evt.preventDefault();
 
@@ -99,9 +103,10 @@ function insertCard (evt) {
   closePopup(addCardPopup);
 }
 
+// Функция отрисовки карточек из массива
 function renderCard () {
-  const card = initialCards.map(createElement);
-  elementsContainer.append(...card);
+  const cards = initialCards.map(createElement);
+  elementsContainer.append(...cards);
 }
 
 renderCard();
@@ -110,8 +115,11 @@ editBtn.addEventListener('click', openEditForm);
 
 addBtn.addEventListener('click', () => openPopup(addCardPopup));
 
-closeBtn.forEach(button => button.addEventListener('click', closePopupBtn));
+closeButtons.forEach(button => button.addEventListener('click', handleCloseButtons));
 
 editForm.addEventListener('submit', saveProfileEdit);
 
 addForm.addEventListener('submit', insertCard);
+
+
+// Здравствуйте, Олег! Спасибо!
