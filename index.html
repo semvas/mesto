@@ -38,10 +38,10 @@
   </div>
   <div class="popup popup-profile">
     <div class="popup__container">
-      <form name="profile-edit" class="popup__form">
+      <form name="profile-edit" class="popup__form" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" name="profile-name" class="popup__form-item">
-        <input type="text" name="profile-desc" class="popup__form-item">
+        <input type="text" name="profile-name" id="name-input" class="popup__form-item" minlength="2" maxlength="40" required>
+        <input type="text" name="profile-desc" id="desc-input" class="popup__form-item" minlength="2" maxlength="200" required>
         <button type="submit" class="popup__save-btn">Сохранить</button>
       </form>
       <button type="button" class="btn popup__close-btn"></button>
@@ -49,10 +49,10 @@
   </div>
   <div class="popup popup-add">
     <div class="popup__container">
-      <form name="add-card" class="popup__form">
+      <form name="add-card" class="popup__form" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input type="text" name="place-name" class="popup__form-item" placeholder="Название">
-        <input type="text" name="place-url" class="popup__form-item" placeholder="Ссылка на картинку">
+        <input type="text" name="place-name" id="place-input" class="popup__form-item" placeholder="Название" minlength="2" maxlength="30" required>
+        <input type="text" name="place-url" id="url-input" class="popup__form-item" placeholder="Ссылка на картинку" required>
         <button type="submit" class="popup__save-btn">Создать</button>
       </form>
       <button type="button" class="btn popup__close-btn"></button>
@@ -79,5 +79,6 @@
   </template>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script srs="./scripts/validate.js"></script>
 </body>
 </html>

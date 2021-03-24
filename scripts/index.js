@@ -2,6 +2,7 @@ const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
 
+const popupList = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup-profile');
 const addCardPopup = document.querySelector('.popup-add');
 const showImgPopup = document.querySelector('.popup-img');
@@ -25,16 +26,26 @@ const cardTemplate = document.querySelector('.element-template');
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', closeOnEscButton);
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', closeOnEscButton);
 }
 
 function  handleCloseButtons (evt) {
   const targetPopup = evt.target.closest('.popup');
 
   closePopup(targetPopup);
+}
+
+function closeOnEscButton (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 
 function openEditForm () {
@@ -117,9 +128,10 @@ addBtn.addEventListener('click', () => openPopup(addCardPopup));
 
 closeButtons.forEach(button => button.addEventListener('click', handleCloseButtons));
 
+popupList.forEach(overlay => overlay.addEventListener('click', (evt) => {
+  closePopup(evt.target);
+}));
+
 editForm.addEventListener('submit', saveProfileEdit);
 
 addForm.addEventListener('submit', insertCard);
-
-
-// Здравствуйте, Олег! Спасибо!
