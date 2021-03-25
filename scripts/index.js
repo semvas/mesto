@@ -2,7 +2,7 @@ const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
 
-const popupList = document.querySelectorAll('.popup');
+const allPopups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup-profile');
 const addCardPopup = document.querySelector('.popup-add');
 const showImgPopup = document.querySelector('.popup-img');
@@ -128,7 +128,7 @@ addBtn.addEventListener('click', () => openPopup(addCardPopup));
 
 closeButtons.forEach(button => button.addEventListener('click', handleCloseButtons));
 
-popupList.forEach(overlay => overlay.addEventListener('click', (evt) => {
+allPopups.forEach(overlay => overlay.addEventListener('click', (evt) => {
   closePopup(evt.target);
 }));
 

@@ -1,7 +1,6 @@
-.popup__form-item {
+.popup__input {
   width: 358px;
-  padding: 13px 4px;
-  margin-bottom: 17px;
+  padding: 10px 4px 13px;
   font-family: inherit;
   font-weight: 400;
   font-size: 14px;
@@ -11,7 +10,7 @@
 }
 
 @media screen and (max-width: 525px) {
-  .popup__form-item {
+  .popup__input {
     width: 100%;
   }
 }

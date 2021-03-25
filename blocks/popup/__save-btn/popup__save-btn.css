@@ -1,5 +1,5 @@
 .popup__save-btn {
-  margin-top: 30px;
+  margin-top: 23px;
   min-height: 50px;
   font-family: inherit;
   font-weight: 400;
@@ -18,7 +18,7 @@
 
 @media screen and (max-width: 425px) {
   .popup__save-btn {
-    margin-top: 27px;
+    margin-top: 20px;
     min-height: 46px;
     font-size: 14px;
     line-height: 1.22;
