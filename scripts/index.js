@@ -1,6 +1,5 @@
 const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
-const closeButtons = document.querySelectorAll('.popup__close-btn');
 
 const allPopups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup-profile');
@@ -48,19 +47,6 @@ function closeOnEscButton (evt) {
   }
 }
 
-// Функция удаления ошибок валидации
-function clearErrors (formName) {
-  const errorList = Array.from(formName.querySelectorAll('.popup__input-error'));
-  errorList.forEach((errorMessage) => {
-    errorMessage.textContent = "";
-  })
-
-  const inputList = Array.from(formName.querySelectorAll('.popup__input'));
-  inputList.forEach((inputArea) => {
-    inputArea.classList.remove('popup__input_type_error')
-  })
-}
-
 function openEditForm () {
   editName.value = profileName.textContent;
   editDesc.value =  profileDesc.textContent;
@@ -70,14 +56,14 @@ function openEditForm () {
   openPopup(editProfilePopup);
 }
 
-function openAddForm () {
+function openAddForm ({inactiveButtonClass}) {
   addForm.reset();
 
   clearErrors(addForm);
 
   const submitButton = addCardPopup.querySelector('.popup__save-btn');
   submitButton.disabled = true;
-  submitButton.classList.add('popup__save-btn_disabled');
+  submitButton.classList.add(inactiveButtonClass);
 
   openPopup(addCardPopup);
 }
@@ -153,12 +139,15 @@ editBtn.addEventListener('click', openEditForm);
 
 addBtn.addEventListener('click', openAddForm);
 
-closeButtons.forEach(button => button.addEventListener('click', handleCloseButtons));
-
-allPopups.forEach(overlay => overlay.addEventListener('click', (evt) => {
-  closePopup(evt.target);
+allPopups.forEach(popup => popup.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-btn')) {
+    closePopup(popup);
+  }
 }));
 
 editForm.addEventListener('submit', saveProfileEdit);
 
 addForm.addEventListener('submit', insertCard);
+
+
+// Здравствуйте, Максим! Благодарю!

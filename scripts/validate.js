@@ -69,3 +69,16 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
 });
+
+// Функция удаления ошибок валидации
+function clearErrors (formName) {
+  const errorList = Array.from(formName.querySelectorAll('.popup__input-error'));
+  errorList.forEach((errorMessage) => {
+    errorMessage.textContent = "";
+  })
+
+  const inputList = Array.from(formName.querySelectorAll('.popup__input'));
+  inputList.forEach((inputArea) => {
+    inputArea.classList.remove('popup__input_type_error')
+  })
+}
