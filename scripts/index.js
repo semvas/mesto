@@ -48,11 +48,38 @@ function closeOnEscButton (evt) {
   }
 }
 
+// Функция удаления ошибок валидации
+function clearErrors (formName) {
+  const errorList = Array.from(formName.querySelectorAll('.popup__input-error'));
+  errorList.forEach((errorMessage) => {
+    errorMessage.textContent = "";
+  })
+
+  const inputList = Array.from(formName.querySelectorAll('.popup__input'));
+  inputList.forEach((inputArea) => {
+    inputArea.classList.remove('popup__input_type_error')
+  })
+}
+
 function openEditForm () {
   editName.value = profileName.textContent;
   editDesc.value =  profileDesc.textContent;
 
+  clearErrors(editForm);
+
   openPopup(editProfilePopup);
+}
+
+function openAddForm () {
+  addForm.reset();
+
+  clearErrors(addForm);
+
+  const submitButton = addCardPopup.querySelector('.popup__save-btn');
+  submitButton.disabled = true;
+  submitButton.classList.add('popup__save-btn_disabled');
+
+  openPopup(addCardPopup);
 }
 
 // Функция редактирования данных профиля
@@ -124,7 +151,7 @@ renderCard();
 
 editBtn.addEventListener('click', openEditForm);
 
-addBtn.addEventListener('click', () => openPopup(addCardPopup));
+addBtn.addEventListener('click', openAddForm);
 
 closeButtons.forEach(button => button.addEventListener('click', handleCloseButtons));
 
