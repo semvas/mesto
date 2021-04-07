@@ -1,3 +1,9 @@
+// import {  } from ''
+// import {  } from ''
+
+
+
+
 const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
 
@@ -148,6 +154,3 @@ allPopups.forEach(popup => popup.addEventListener('click', (evt) => {
 editForm.addEventListener('submit', saveProfileEdit);
 
 addForm.addEventListener('submit', insertCard);
-
-
-// Здравствуйте, Максим! Благодарю!

@@ -1,3 +1,8 @@
+// import {  } from ''
+// import {  } from ''
+
+
+
 const showInputError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
@@ -26,6 +31,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+// публичный метод в классе валидации
 const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
@@ -48,6 +54,8 @@ const setIventListeners = (formElement, {inputSelector, submitButtonSelector, ..
   });
 };
 
+
+// публичный метод в классе валидации
 const enableValidation = ({formSelector, ...rest}) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach(function (formElement) {
@@ -61,6 +69,7 @@ const enableValidation = ({formSelector, ...rest}) => {
   });
 };
 
+// Где у кого находится эта переменная с объектом
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -70,7 +79,7 @@ enableValidation({
   errorClass: 'popup__input-error_visible'
 });
 
-// Функция удаления ошибок валидации
+// Функция удаления ошибок валидации - публичный метод в классе валидации
 function clearErrors (formName) {
   const errorList = Array.from(formName.querySelectorAll('.popup__input-error'));
   errorList.forEach((errorMessage) => {
