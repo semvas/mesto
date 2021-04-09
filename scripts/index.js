@@ -117,3 +117,6 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(selectors, addForm);
 addFormValidator.enableValidation();
+
+
+// Здравствуйте, Ролан! Спасибо!
