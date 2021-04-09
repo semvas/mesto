@@ -1,4 +1,5 @@
-import { imagePopup, imageCaption, showImgPopup, openPopup } from './index.js';
+import { openPopup } from './index.js';
+import { imagePopup, imageCaption, showImgPopup } from './constants.js';
 
 
 export class Card {
@@ -56,6 +57,7 @@ export class Card {
     this._cardImage.alt = this._name;
 
     this._element.querySelector('.element__title').textContent = this._name;
-    container.prepend(this._element);
+
+    return this._element;
   }
 }
