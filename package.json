@@ -1,0 +1,23 @@
+{
+  "name": "mesto",
+  "version": "0.0.7",
+  "description": "**Привет!**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semvas/mesto.git"
+  },
+  "author": "Ivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/semvas/mesto/issues"
+  },
+  "homepage": "https://github.com/semvas/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  }
+}

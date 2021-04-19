@@ -1,12 +1,9 @@
-import { openPopup } from './index.js';
-import { imagePopup, imageCaption, showImgPopup } from './constants.js';
-
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleImgPopup) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleImgPopup = handleImgPopup;
   }
 
   _getTemplate() {
@@ -15,15 +12,6 @@ export class Card {
       .content
       .querySelector('.element')
       .cloneNode(true);
-  }
-
-  // Метод открытия изображения из карточки
-  _handleImgPopup() {
-  imagePopup.src = this._link;
-  imagePopup.alt = this._name;
-  imageCaption.textContent = this._name;
-
-  openPopup(showImgPopup);
   }
 
   _handleLikeClick() {
@@ -36,7 +24,7 @@ export class Card {
 
   _setEventListeners() {
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleImgPopup();
+      this._handleImgPopup(this._link, this._name);
     });
 
     this._element.querySelector('.element__like-btn').addEventListener('click', () => {

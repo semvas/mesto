@@ -24,7 +24,7 @@ import {
   
   elementsContainer,
   
-  initialCards 
+  initialCards, imagePopup, imageCaption, showImgPopup 
 } from './constants.js';
 
 export function openPopup (popup) {
@@ -66,6 +66,15 @@ function openAddForm () {
   openPopup(addCardPopup);
 }
 
+// Функция открытия изображения из карточки
+function handleImgPopup (link, name) {
+  imagePopup.src = link;
+  imagePopup.alt = name;
+  imageCaption.textContent = name;
+
+  openPopup(showImgPopup);
+}
+
 // Функция редактирования данных профиля
 function saveProfileEdit (evt) {
   evt.preventDefault();
@@ -78,7 +87,7 @@ function saveProfileEdit (evt) {
 
 // Функция создания карточки
 function addCard(item) {
-  const card = new Card(item, '.element-template');
+  const card = new Card(item, '.element-template', handleImgPopup);
   elementsContainer.prepend(card.createElement());
 }
 
@@ -117,6 +126,3 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(selectors, addForm);
 addFormValidator.enableValidation();
-
-
-// Здравствуйте, Ролан! Спасибо!
