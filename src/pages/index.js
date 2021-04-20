@@ -1,5 +1,5 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 import {
   selectors,
@@ -25,7 +25,7 @@ import {
   elementsContainer,
   
   initialCards, imagePopup, imageCaption, showImgPopup 
-} from './constants.js';
+} from '../utils/constants.js';
 
 export function openPopup (popup) {
   popup.classList.add('popup_opened');
