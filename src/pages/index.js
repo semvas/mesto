@@ -1,5 +1,6 @@
-import { Card } from '../components/Card.js';
-import { FormValidator } from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
 
 import {
   selectors,
@@ -86,9 +87,10 @@ function saveProfileEdit (evt) {
 }
 
 // Функция создания карточки
-function addCard(item) {
+function createCard(item) {
   const card = new Card(item, '.element-template', handleImgPopup);
-  elementsContainer.prepend(card.createElement());
+
+  return card.createElement();
 }
 
 // Функция добавления новой карточки
@@ -104,8 +106,14 @@ function insertCard (evt) {
   closePopup(addCardPopup);
 }
 
-// Функция отрисовки карточек из массива
-initialCards.reverse().forEach(item => addCard(item));
+// Класс карточек из массива
+const cardList = new Section({
+  items: initialCards,
+  renderer: item => cardList.addItem(createCard(item))
+}, elementsContainer);
+
+// Отрисовка карточек из массива методом класса
+cardList.renderItems();
 
 editBtn.addEventListener('click', openEditForm);
 
