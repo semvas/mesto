@@ -12,7 +12,7 @@ const addBtn = document.querySelector('.profile__add-btn');
 const allPopups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup-profile');
 const addCardPopup = document.querySelector('.popup-add');
-const showImgPopup = document.querySelector('.popup-img');
+const showImgPopup = document.querySelector('.popup-img'); // использовал, добавить как селектор?
 
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__desc');
@@ -28,7 +28,7 @@ const placeUrl = addForm.querySelector('input[name="place-url"]');
 const imagePopup = document.querySelector('.popup__image');
 const imageCaption = document.querySelector('.popup__caption');
 
-const elementsContainer = document.querySelector('.elements');
+const elementsContainer = document.querySelector('.elements');  // использовал, добавить как селектор?
 
 const initialCards = [
     {

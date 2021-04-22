@@ -1,6 +1,8 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithForm from '../components/PopupWithForm.js'
 
 import {
   selectors,
@@ -10,7 +12,6 @@ import {
   
   allPopups,
   editProfilePopup,
-  addCardPopup,
   
   profileName,
   profileDesc,
@@ -20,91 +21,67 @@ import {
   editDesc,
   
   addForm,
-  placeName,
-  placeUrl,
   
   elementsContainer,
   
-  initialCards, imagePopup, imageCaption, showImgPopup 
+  initialCards  
 } from '../utils/constants.js';
 
-export function openPopup (popup) {
-  popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', closeOnEscButton);
-}
 
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
+// function openEditForm () {
+//   editName.value = profileName.textContent;
+//   editDesc.value =  profileDesc.textContent;
 
-  document.removeEventListener('keydown', closeOnEscButton);
-}
+//   editFormValidator.clearErrors();
 
-function closeOnEscButton (evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
-
-function openEditForm () {
-  editName.value = profileName.textContent;
-  editDesc.value =  profileDesc.textContent;
-
-  editFormValidator.clearErrors();
-
-  openPopup(editProfilePopup);
-}
-
-function openAddForm () {
-  addForm.reset();
-
-  addFormValidator.clearErrors();
-
-  const submitButton = addCardPopup.querySelector(selectors.submitButtonSelector);
-  submitButton.disabled = true;
-  submitButton.classList.add(selectors.inactiveButtonClass);
-
-  openPopup(addCardPopup);
-}
-
-// Функция открытия изображения из карточки
-function handleImgPopup (link, name) {
-  imagePopup.src = link;
-  imagePopup.alt = name;
-  imageCaption.textContent = name;
-
-  openPopup(showImgPopup);
-}
-
-// Функция редактирования данных профиля
-function saveProfileEdit (evt) {
-  evt.preventDefault();
-
-  profileName.textContent = editName.value;
-  profileDesc.textContent = editDesc.value;
-
-  closePopup (editProfilePopup);
-}
+//   openPopup(editProfilePopup);
+// }
 
 // Функция создания карточки
 function createCard(item) {
-  const card = new Card(item, '.element-template', handleImgPopup);
+  const card = new Card(item, '.element-template', handleCardClick);
 
   return card.createElement();
 }
 
-// Функция добавления новой карточки
-function insertCard (evt) {
-  evt.preventDefault();
+const addCardPopup = new PopupWithForm(item => {
+    const card = createCard(item);
+    cardList.addItem(card);
+    addCardPopup.close();
+  },
+'.popup-add');
 
-  const newCard = {
-    name: placeName.value, 
-    link: placeUrl.value
-  };
-  addCard(newCard);
 
-  closePopup(addCardPopup);
+const addCardPopupHandler = () => {
+
+  addFormValidator.clearErrors();
+
+  const submitButton = addForm.querySelector(selectors.submitButtonSelector);
+  submitButton.disabled = true;
+  submitButton.classList.add(selectors.inactiveButtonClass);
+
+  addCardPopup.open();
 }
+
+addBtn.addEventListener('click', addCardPopupHandler);
+
+const showImgPopup = new PopupWithImage('.popup-img');
+
+// Функция открытия изображения из карточки
+function handleCardClick(name, link) {
+  showImgPopup.open(name, link)
+}
+
+// Функция редактирования данных профиля
+// function saveProfileEdit (evt) {
+//   evt.preventDefault();
+
+//   profileName.textContent = editName.value;
+//   profileDesc.textContent = editDesc.value;
+
+//   closePopup (editProfilePopup);
+// }
 
 // Класс карточек из массива
 const cardList = new Section({
@@ -115,19 +92,12 @@ const cardList = new Section({
 // Отрисовка карточек из массива методом класса
 cardList.renderItems();
 
-editBtn.addEventListener('click', openEditForm);
+// editBtn.addEventListener('click', openEditForm);
 
-addBtn.addEventListener('click', openAddForm);
+addCardPopup.setEventListeners();
+showImgPopup.setEventListeners();
 
-allPopups.forEach(popup => popup.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-btn')) {
-    closePopup(popup);
-  }
-}));
-
-editForm.addEventListener('submit', saveProfileEdit);
-
-addForm.addEventListener('submit', insertCard);
+// editForm.addEventListener('submit', saveProfileEdit);
 
 const editFormValidator = new FormValidator(selectors, editForm);
 editFormValidator.enableValidation();
