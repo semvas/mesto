@@ -9,26 +9,21 @@ const selectors = {
 const editBtn = document.querySelector('.profile__edit-btn');
 const addBtn = document.querySelector('.profile__add-btn');
 
-const allPopups = document.querySelectorAll('.popup');
-const editProfilePopup = document.querySelector('.popup-profile');
-const addCardPopup = document.querySelector('.popup-add');
-const showImgPopup = document.querySelector('.popup-img'); // использовал, добавить как селектор?
+const profilePopup = '.popup-profile';
+const addPopup = '.popup-add';
+const imgPopup = '.popup-img';
 
-const profileName = document.querySelector('.profile__name');
-const profileDesc = document.querySelector('.profile__desc');
+const profileName = '.profile__name';
+const profileDesc = '.profile__desc';
 
 const editForm = document.querySelector('form[name="profile-edit"]');
-const editName = editForm.querySelector('input[name="profile-name"]');
-const editDesc = editForm.querySelector('input[name="profile-desc"]');
+const editName = editForm.querySelector('input[name="name"]');
+const editDesc = editForm.querySelector('input[name="desc"]');
 
 const addForm = document.querySelector('form[name="add-card"]');
-const placeName = addForm.querySelector('input[name="place-name"]');
-const placeUrl = addForm.querySelector('input[name="place-url"]');
 
-const imagePopup = document.querySelector('.popup__image');
-const imageCaption = document.querySelector('.popup__caption');
-
-const elementsContainer = document.querySelector('.elements');  // использовал, добавить как селектор?
+const elementsContainer = document.querySelector('.elements');
+const elementTemplate = '.element-template';
 
 const initialCards = [
     {
@@ -63,10 +58,9 @@ export {
   editBtn,
   addBtn,
   
-  allPopups,
-  editProfilePopup,
-  addCardPopup,
-  showImgPopup,
+  profilePopup,
+  addPopup,
+  imgPopup,
   
   profileName,
   profileDesc,
@@ -76,13 +70,9 @@ export {
   editDesc,
   
   addForm,
-  placeName,
-  placeUrl,
-  
-  imagePopup,
-  imageCaption,
   
   elementsContainer,
+  elementTemplate,
   
   initialCards
 };

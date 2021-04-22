@@ -1,8 +1,11 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
+
+import UserInfo from '../components/UserInfo.js'
 
 import {
   selectors,
@@ -10,8 +13,9 @@ import {
   editBtn,
   addBtn,
   
-  allPopups,
-  editProfilePopup,
+  profilePopup,
+  addPopup,
+  imgPopup,
   
   profileName,
   profileDesc,
@@ -23,24 +27,43 @@ import {
   addForm,
   
   elementsContainer,
+  elementTemplate,
   
   initialCards  
 } from '../utils/constants.js';
 
+const user = new UserInfo({
+  name: profileName,
+  desc: profileDesc
+});
 
+const editProfilePopup = new PopupWithForm(item => {
+  user.setUserInfo(item.name, item.desc);
 
-// function openEditForm () {
-//   editName.value = profileName.textContent;
-//   editDesc.value =  profileDesc.textContent;
+  editProfilePopup.close();
+  }, 
+profilePopup);
 
-//   editFormValidator.clearErrors();
+const editProfilePopupHandler = () => {
+  const profileInfo = user.getUserInfo();
+  editName.value = profileInfo.name;
+  editDesc.value = profileInfo.desc;
 
-//   openPopup(editProfilePopup);
-// }
+  editFormValidator.clearErrors();
+
+  editProfilePopup.open();
+}
+
+const showImgPopup = new PopupWithImage(imgPopup);
+
+// Функция открытия изображения из карточки
+function handleCardClick(name, link) {
+  showImgPopup.open(name, link)
+}
 
 // Функция создания карточки
 function createCard(item) {
-  const card = new Card(item, '.element-template', handleCardClick);
+  const card = new Card(item, elementTemplate, handleCardClick);
 
   return card.createElement();
 }
@@ -50,11 +73,9 @@ const addCardPopup = new PopupWithForm(item => {
     cardList.addItem(card);
     addCardPopup.close();
   },
-'.popup-add');
-
+addPopup);
 
 const addCardPopupHandler = () => {
-
   addFormValidator.clearErrors();
 
   const submitButton = addForm.querySelector(selectors.submitButtonSelector);
@@ -64,40 +85,22 @@ const addCardPopupHandler = () => {
   addCardPopup.open();
 }
 
-addBtn.addEventListener('click', addCardPopupHandler);
-
-const showImgPopup = new PopupWithImage('.popup-img');
-
-// Функция открытия изображения из карточки
-function handleCardClick(name, link) {
-  showImgPopup.open(name, link)
-}
-
-// Функция редактирования данных профиля
-// function saveProfileEdit (evt) {
-//   evt.preventDefault();
-
-//   profileName.textContent = editName.value;
-//   profileDesc.textContent = editDesc.value;
-
-//   closePopup (editProfilePopup);
-// }
-
-// Класс карточек из массива
+// Класс карточек из массива с методом добавления новой карточки
 const cardList = new Section({
   items: initialCards,
   renderer: item => cardList.addItem(createCard(item))
-}, elementsContainer);
+},
+elementsContainer);
 
 // Отрисовка карточек из массива методом класса
 cardList.renderItems();
 
-// editBtn.addEventListener('click', openEditForm);
+addBtn.addEventListener('click', addCardPopupHandler);
+editBtn.addEventListener('click', editProfilePopupHandler);
 
 addCardPopup.setEventListeners();
+editProfilePopup.setEventListeners();
 showImgPopup.setEventListeners();
-
-// editForm.addEventListener('submit', saveProfileEdit);
 
 const editFormValidator = new FormValidator(selectors, editForm);
 editFormValidator.enableValidation();
