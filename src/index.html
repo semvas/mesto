@@ -5,17 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Красивые места">
   <title>Красивые места</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="body">
   <div class="page">
     <header class="header">
-      <img  class="header__logo" src=./images/logo.svg alt="Логотип">
+      <img  class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" src="./images/avatar.jpg" alt="Аватарка">
+        <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -89,6 +88,5 @@
       <button class="btn element__del-btn" type="button"></button>
     </li>
   </template>
-  <script type="module" src="./pages/index.js"></script>
 </body>
 </html>
