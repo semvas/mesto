@@ -73,17 +73,14 @@ function createCard(item) {
 const addCardPopup = new PopupWithForm(item => {
     const card = createCard(item);
     cardList.addItem(card);
+    
     addCardPopup.close();
   },
 addPopup);
 
 const addCardPopupHandler = () => {
   addFormValidator.clearErrors();
-
-  const submitButton = addForm.querySelector(selectors.submitButtonSelector);
-  submitButton.disabled = true;
-  submitButton.classList.add(selectors.inactiveButtonClass);
-
+  
   addCardPopup.open();
 }
 
@@ -109,3 +106,6 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(selectors, addForm);
 addFormValidator.enableValidation();
+
+
+// Здравствуйте, Геннадий! Спасибо!
