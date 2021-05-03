@@ -61,12 +61,12 @@ export default class FormValidator {
   }
 
   clearErrors() {
-    const errorList = Array.from(this._formElement.querySelectorAll('.popup__input-error'));
-    errorList.forEach((errorElement) => {
-      errorElement.textContent = '';
-    });
     this._inputList.forEach((inputElement) => {
-      inputElement.classList.remove(this._formSelectors.inputErrorClass);
-    })
+      this._hideInputError(inputElement);
+    });
+    this._toggleButtonState();
   }
 }
+
+
+// Спасибо!
