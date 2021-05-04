@@ -14,7 +14,9 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
+        <div class="profile__image-wrapper">
+          <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
+        </div>
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -35,6 +37,7 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
   </div>
+
   <div class="popup popup-profile">
     <div class="popup__container">
       <form name="profile-edit" class="popup__form" novalidate>
@@ -78,12 +81,36 @@
       <button type="button" class="btn popup__close-btn"></button>
     </div>
   </div>
+  <div class="popup popup-ava">
+    <div class="popup__container">
+      <form name="change-ava" class="popup__form" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <label class="popup__field">
+          <input type="url" name="avatar" id="avatar-input" class="popup__input" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error place-input-error"></span>
+        </label>
+        <button type="submit" class="popup__save-btn">Сохранить</button>
+      </form>
+      <button type="button" class="btn popup__close-btn"></button>
+    </div>
+  </div>
+  <div class="popup popup-delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="button" class="popup__save-btn popup__conf-btn">Да</button>
+      <button type="button" class="btn popup__close-btn"></button>
+    </div>
+  </div>
+
   <template class="element-template">
     <li class="element">
       <img class="element__image" src="#" alt="#">
       <div class="element__info">
         <h3 class="element__title"></h3>
-        <button type="button" class="element__like-btn"></button>
+        <div class="element__like-wrapper">
+          <button type="button" class="element__like-btn"></button>
+          <span class="element__like-counter">0</span>
+        </div>
       </div>
       <button class="btn element__del-btn" type="button"></button>
     </li>

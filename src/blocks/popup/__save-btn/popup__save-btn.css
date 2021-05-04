@@ -24,3 +24,8 @@
     line-height: 1.22;
   }
 }
+
+.popup-delete .popup__save-btn {
+  margin-top: -2px;
+  width: 100%;
+}
