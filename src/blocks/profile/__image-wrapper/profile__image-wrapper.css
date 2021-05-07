@@ -27,3 +27,9 @@
   opacity: .2;
   transition: .2s;
 }
+
+@media screen and (max-width: 920px) {
+  .profile__image-wrapper {
+    margin: 0;
+  }
+}
