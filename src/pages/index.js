@@ -70,12 +70,12 @@ function createCard(item) {
         confirmDeletePopup.loading(true);
 
         api.deleteCard(card._cardId)
-          .then(() => card.deleteCard())
-          .catch(err => console.log(err))
-          .finally(() => {
-            confirmDeletePopup.loading(false);
+          .then(() => {
+            card.deleteCard();
             confirmDeletePopup.close();
           })
+          .catch(err => console.log(err))
+          .finally(() => confirmDeletePopup.loading(false))
       });
       confirmDeletePopup.open();
     }
@@ -94,12 +94,12 @@ const editProfilePopup = new PopupWithForm(item => {
   editProfilePopup.loading(true);
 
   api.setUserInfo(item)
-    .then(res => user.setUserInfo(res))
-    .catch(err => console.log(err))
-    .finally(() => {
-      editProfilePopup.loading(false);
+    .then(res => {
+      user.setUserInfo(res);
       editProfilePopup.close();
     })
+    .catch(err => console.log(err))
+    .finally(() => editProfilePopup.loading(false))
   }, 
 profilePopup);
 
@@ -119,12 +119,10 @@ const changeAvaPopup = new PopupWithForm(item => {
   api.setAvatar(item)
     .then(res => {
       user.setUserInfo(res);
-    })
-    .catch(err => console.log(err))
-    .finally(() => {
-      changeAvaPopup.loading(false);
       changeAvaPopup.close();
     })
+    .catch(err => console.log(err))
+    .finally(() => changeAvaPopup.loading(false))
   },
 avatarPopup);
 
@@ -141,12 +139,10 @@ const addCardPopup = new PopupWithForm(item => {
     .then(res => {
       const card = createCard(res);
       cardList.addItem(card);
-    })
-    .catch(err => console.log(err))
-    .finally(() => {
-      addCardPopup.loading(false)
       addCardPopup.close();
     })
+    .catch(err => console.log(err))
+    .finally(() => addCardPopup.loading(false))
   },
 addPopup);
 
@@ -182,3 +178,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     cardList.renderItems(cards);
   })
   .catch(err => console.log(err))
+
+
+  // Здравствуйте, Айгуль! Благодарю!
